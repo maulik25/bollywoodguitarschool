@@ -6,8 +6,78 @@
 <title>Chura Liya Hai Tumne — Complete Guitar Tab v6</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="guitar-tab-theme.css">
+<style>
+/* ── Back-nav bar ─────────────────────────────────────────── */
+.back-nav {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  background: rgba(10,10,14,.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.back-nav-left {
+  display: flex; align-items: center; gap: 18px;
+}
+.back-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid var(--border-moderate);
+  border-radius: var(--radius-sm);
+  transition: background .18s, color .18s, border-color .18s;
+}
+.back-btn:hover {
+  background: var(--fill-gold-soft);
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+.back-btn svg { width:13px; height:13px; }
+.back-nav-breadcrumb {
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.back-nav-breadcrumb span { color: var(--text-secondary); }
+.back-nav-right {
+  display: flex; align-items: center; gap: 12px;
+}
+.back-nav-right a {
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-tertiary); text-decoration: none;
+  transition: color .18s;
+}
+.back-nav-right a:hover { color: var(--gold); }
+@media (max-width: 600px) {
+  .back-nav-breadcrumb { display: none; }
+  .back-nav-right a:not(:first-child) { display: none; }
+}
+</style>
 </head>
 <body>
+
+<!-- ── BACK-TO-HOME NAV ─────────────────────────────────────────── -->
+<nav class="back-nav" aria-label="Site navigation">
+  <div class="back-nav-left">
+    <a href="index.html" class="back-btn">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 12L6 8l4-4"/>
+      </svg>
+      Home
+    </a>
+    <div class="back-nav-breadcrumb">
+      🎸 Bollywood Guitar School &nbsp;/&nbsp; <span>Chura Liya Hai Tumne</span>
+    </div>
+  </div>
+  <div class="back-nav-right">
+    <a href="chords.html">Chord Library</a>
+    <a href="index.html#songs">All Songs</a>
+  </div>
+</nav>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
 <div class="gt-hero gt-fi">
