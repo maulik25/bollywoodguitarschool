@@ -973,7 +973,7 @@ function doSearch(query) {
   `).join('');
 }
 
-/* ── Contact form AJAX ───────────────────────────────────────── */
+/* ── Contact form — clean AJAX for Formspree (no reCAPTCHA) ── */
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', async function(e) {
@@ -982,26 +982,35 @@ if (contactForm) {
     const btnText = document.getElementById('form-btn-text');
     const successEl = document.getElementById('form-success');
     const errorEl = document.getElementById('form-error');
+
     btn.disabled = true;
     btnText.textContent = 'Sending…';
     successEl.style.display = 'none';
     errorEl.style.display = 'none';
+
     try {
-      const data = new FormData(contactForm);
       const res = await fetch(contactForm.action, {
-        method: 'POST', body: data,
+        method: 'POST',
+        body: new FormData(contactForm),
         headers: { 'Accept': 'application/json' }
       });
+
+      const json = await res.json().catch(() => ({}));
+
       if (res.ok) {
         contactForm.reset();
         successEl.style.display = 'flex';
-        btnText.textContent = 'Send Message →';
-        btn.disabled = false;
       } else {
-        throw new Error('Server error');
+        const msg = (json.errors && json.errors.map(err => err.message).join(', '))
+          || json.error
+          || 'Something went wrong. Please try again.';
+        errorEl.innerHTML = '⚠️ ' + msg;
+        errorEl.style.display = 'flex';
       }
     } catch {
+      errorEl.innerHTML = '⚠️ Network error — please check your connection and try again.';
       errorEl.style.display = 'flex';
+    } finally {
       btnText.textContent = 'Send Message →';
       btn.disabled = false;
     }
