@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bollywood Guitar School — Learn Guitar Through Hindi Film Music</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guitar-tab-theme.css">
+<style>
+/* ── Index-specific additions ─────────────────────────────────── */
+
+/* Animated strings decoration */
+.strings-deco {
+  display: flex; gap: 14px; justify-content: center;
+  margin: 36px 0 0; opacity: .35;
+}
+.string-line {
+  height: 80px; width: 1.5px;
+  border-radius: 2px;
+  animation: string-vibrate 2.4s ease-in-out infinite;
+}
+.string-line:nth-child(1){ background:var(--string-e-high); animation-delay:0s;    animation-duration:1.9s; }
+.string-line:nth-child(2){ background:var(--string-b);      animation-delay:.15s;  animation-duration:2.1s; }
+.string-line:nth-child(3){ background:var(--string-g);      animation-delay:.3s;   animation-duration:2.4s; }
+.string-line:nth-child(4){ background:var(--string-d);      animation-delay:.45s;  animation-duration:2.7s; }
+.string-line:nth-child(5){ background:var(--string-a);      animation-delay:.6s;   animation-duration:3.0s; }
+.string-line:nth-child(6){ background:var(--string-e-low);  animation-delay:.75s;  animation-duration:3.3s; }
+@keyframes string-vibrate {
+  0%,100% { transform: scaleX(1);   opacity:.35; }
+  50%      { transform: scaleX(3.5); opacity:.9;  }
+}
+
+/* Feature strip */
+.feature-strip {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 0; margin: 60px auto 0; max-width: 900px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); overflow: hidden;
+  background: var(--bg-surface);
+}
+.feature-item {
+  flex: 1; min-width: 180px;
+  padding: 28px 22px; text-align: center;
+  border-right: 1px solid var(--border-subtle);
+  position: relative;
+}
+.feature-item:last-child { border-right: none; }
+.feature-item-icon { font-size: 28px; margin-bottom: 10px; }
+.feature-item-title {
+  font-family: var(--font-display); font-size: 17px; font-weight: 600;
+  color: var(--gold-bright); margin-bottom: 6px;
+}
+.feature-item-body { font-size: 12.5px; color: var(--text-tertiary); line-height: 1.55; }
+
+/* Marquee scroll (film credits aesthetic) */
+.marquee-wrap {
+  overflow: hidden; white-space: nowrap;
+  border-top: 1px solid var(--border-section);
+  border-bottom: 1px solid var(--border-section);
+  padding: 14px 0;
+  background: var(--bg-surface);
+}
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 28s linear infinite;
+}
+.marquee-inner:hover { animation-play-state: paused; }
+.marquee-item {
+  display: inline-block; padding: 0 32px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.marquee-dot {
+  display: inline-block; width: 4px; height: 4px;
+  border-radius: 50%; background: var(--gold);
+  vertical-align: middle; margin: 0 16px;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Song card featured (first song) */
+.song-card-featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-moderate);
+  background: var(--bg-surface);
+  text-decoration: none; color: inherit;
+  transition: box-shadow .3s, border-color .3s;
+  position: relative;
+}
+.song-card-featured:hover {
+  box-shadow: 0 16px 50px rgba(0,0,0,.4);
+  border-color: var(--border-strong);
+}
+.song-card-featured::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--string-g), var(--gold), var(--string-b));
+}
+.featured-left {
+  padding: 40px 36px;
+  background: linear-gradient(135deg, var(--bg-raise) 0%, var(--bg-surface) 100%);
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--border-section);
+}
+.featured-right {
+  padding: 40px 36px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.featured-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-ok); margin-bottom: 18px;
+}
+.featured-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--color-ok); box-shadow: 0 0 6px var(--color-ok);
+  animation: gt-blink 1.6s ease-in-out infinite;
+}
+.featured-title {
+  font-family: var(--font-display); font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 700; color: var(--gold-bright); line-height: 1.1;
+  margin-bottom: 8px;
+}
+.featured-film {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 16px; color: var(--text-secondary); margin-bottom: 20px;
+}
+.featured-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.featured-desc {
+  font-size: 13.5px; color: var(--text-secondary);
+  line-height: 1.7; margin-bottom: 28px; max-width: 380px;
+}
+.featured-tab-preview {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 18px; margin-bottom: 20px;
+  font-family: var(--font-mono); font-size: 12px;
+  line-height: 1.8; letter-spacing: .5px;
+}
+.featured-tab-preview .tp-B { color: var(--string-b); }
+.featured-tab-preview .tp-G { color: var(--string-g); }
+.featured-tab-preview .tp-D { color: var(--string-d); }
+.featured-tab-preview .tp-l { color: var(--text-tertiary); font-size: 10px; }
+.featured-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--bg-base); background: var(--gold);
+  padding: 14px 28px; border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+  align-self: flex-start;
+}
+.featured-cta:hover { background: var(--gold-bright); transform: translateY(-1px); }
+.featured-cta .arrow { transition: transform .2s; }
+.song-card-featured:hover .featured-cta .arrow { transform: translateX(4px); }
+
+/* Section divider with label */
+.labeled-divider {
+  display: flex; align-items: center; gap: 16px;
+  margin: 64px 0 40px;
+}
+.labeled-divider::before, .labeled-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border-section);
+}
+.labeled-divider span {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--text-tertiary); white-space: nowrap;
+}
+
+/* Testimonial / quote block */
+.quote-block {
+  background: var(--bg-surface);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 24px 28px;
+  max-width: 680px; margin: 0 auto;
+}
+.quote-text {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 22px; color: var(--text-primary); line-height: 1.5;
+  margin-bottom: 12px;
+}
+.quote-attr {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Coming soon card overlay */
+.coming-tag {
+  position: absolute; top: 16px; right: 16px;
+  font-family: var(--font-mono); font-size: 8.5px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px;
+  background: var(--fill-gold-soft);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-subtle);
+}
+
+@media (max-width:760px) {
+  .song-card-featured { grid-template-columns: 1fr; }
+  .featured-right { padding: 28px; }
+  .featured-left { padding: 28px; border-right: none; border-bottom: 1px solid var(--border-section); }
+  .feature-strip { flex-direction: column; }
+  .feature-item { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  .feature-item:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── STICKY NAV ────────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <a href="index.html" class="site-nav-logo">🎸 Bollywood <span>Guitar School</span></a>
+  <ul class="site-nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="chords.html">Chords</a></li>
+    <li><a href="#songs">Songs</a></li>
+    <li><a href="#learn">Learn</a></li>
+  </ul>
+  <a href="chords.html" class="site-nav-cta">Chord Library</a>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────── -->
+<section class="site-hero">
+  <div class="site-hero-grid"></div>
+  <div class="site-hero-glow"></div>
+
+  <p class="site-hero-eyebrow">Bollywood Guitar School · Est. 2025</p>
+
+  <h1 class="site-hero-title">
+    Play the songs<br>
+    <span class="accent italic">you love</span>
+  </h1>
+  <p class="site-hero-tagline">
+    Learn guitar through the greatest Hindi film music ever made —<br>
+    verified tabs, chord diagrams, and Web Audio playback.
+  </p>
+
+  <div class="site-hero-btns">
+    <a href="#songs" class="btn-primary">Start with Songs ↓</a>
+    <a href="chords.html" class="btn-outline">Chord Library</a>
+  </div>
+
+  <!-- Animated strings -->
+  <div class="strings-deco" aria-hidden="true">
+    <div class="string-line"></div>
+    <div class="string-line"></div>
+    <div class="string-line"></div>
+    <div class="string-line"></div>
+    <div class="string-line"></div>
+    <div class="string-line"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">5</div>
+      <div class="stat-lbl">Sources Verified</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12</div>
+      <div class="stat-lbl">Chords Covered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-lbl">Songs to Learn</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ───────────────────────────────────────────────────── -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-inner">
+    <span class="marquee-item">Chura Liya Hai Tumne</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Yaadon Ki Baaraat</span><span class="marquee-dot"></span>
+    <span class="marquee-item">R.D. Burman</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Am · G · E · E7</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Guitar Tabs · Verified</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Asha Bhosle</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Mohammed Rafi</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Web Audio Playback</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Open Chords · Barre Chords</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Bollywood Guitar School</span><span class="marquee-dot"></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Chura Liya Hai Tumne</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Yaadon Ki Baaraat</span><span class="marquee-dot"></span>
+    <span class="marquee-item">R.D. Burman</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Am · G · E · E7</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Guitar Tabs · Verified</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Asha Bhosle</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Mohammed Rafi</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Web Audio Playback</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Open Chords · Barre Chords</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Bollywood Guitar School</span><span class="marquee-dot"></span>
+  </div>
+</div>
+
+<!-- ── FEATURE STRIP ─────────────────────────────────────────────── -->
+<div class="site-section" style="padding:64px 24px 56px">
+<div class="site-section-inner">
+  <div class="feature-strip">
+    <div class="feature-item">
+      <div class="feature-item-icon">🔍</div>
+      <div class="feature-item-title">Source Verified</div>
+      <div class="feature-item-body">Every tab cross-referenced against 5+ independent sources. No guesswork.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-item-icon">🔊</div>
+      <div class="feature-item-title">Web Audio</div>
+      <div class="feature-item-body">Press ▶ to hear each phrase at correct guitar frequencies before you play it.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-item-icon">🎼</div>
+      <div class="feature-item-title">Full Songs</div>
+      <div class="feature-item-body">Complete tabs for every section — mukhda, antara, bridge — not just the intro.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-item-icon">🎓</div>
+      <div class="feature-item-title">Patient Teaching</div>
+      <div class="feature-item-body">Step-by-step breakdowns, fingering tips, and common mistake warnings.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── SONGS ─────────────────────────────────────────────────────── -->
+<section class="site-section site-section-alt" id="songs">
+<div class="site-section-inner">
+  <p class="site-section-eyebrow">Song Library</p>
+  <h2 class="site-section-title">Start <em>Playing</em></h2>
+  <p class="site-section-body">Each song comes with a complete verified guitar tab, Web Audio playback for every section, note-by-note breakdowns, source citations, and a structured practice plan.</p>
+
+  <div class="song-grid">
+
+    <!-- FEATURED SONG — Chura Liya -->
+    <a href="chura-liya-guitar-tab-v6.html" class="song-card-featured">
+      <div class="featured-left">
+        <div class="featured-badge">Featured · Lesson 01</div>
+        <h2 class="featured-title">Chura Liya Hai Tumne</h2>
+        <p class="featured-film">Yaadon Ki Baaraat · 1973 · R.D. Burman</p>
+        <div class="featured-pills">
+          <span class="song-pill diff-beginner">Beginner–Intermediate</span>
+          <span class="song-pill">Strings: G · B · D</span>
+          <span class="song-pill">Key: Am</span>
+          <span class="song-pill">5 Sources Verified</span>
+        </div>
+        <p class="featured-desc">
+          One of Bollywood's most iconic melodies — and a perfect first lesson. The entire song uses just three strings and four repeating patterns. Mohammed Rafi and Asha Bhosle at their finest.
+        </p>
+        <span class="featured-cta">Open Lesson <span class="arrow">→</span></span>
+      </div>
+      <div class="featured-right">
+        <div>
+          <p style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px;">Tab Preview — Mukhda</p>
+          <div class="featured-tab-preview">
+            <span class="tp-l">B</span>&nbsp;<span class="tp-B">|--------1--0-----------0-------|</span><br>
+            <span class="tp-l">G</span>&nbsp;<span class="tp-G">|--2--2--------2---2------2--0--|</span><br>
+            <span class="tp-l">D</span>&nbsp;<span class="tp-D">|------------------------------0|</span>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);line-height:1.8;letter-spacing:.5px">
+            <span style="color:var(--string-g)">●</span> G fret 2 — anchor note<br>
+            <span style="color:var(--string-b)">●</span> B frets 1 &amp; 0 — melody ornaments<br>
+            <span style="color:var(--string-d)">●</span> D open — phrase resolve<br>
+            <br>
+            <span style="color:var(--text-tertiary)">Chords: Am · G · E · E7</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:10px;margin-top:20px;">What you'll learn</p>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)"><span style="color:var(--color-ok);font-size:14px">✓</span> String navigation: G → B → D</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)"><span style="color:var(--color-ok);font-size:14px">✓</span> Sliding technique (3/5, 5\3)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)"><span style="color:var(--color-ok);font-size:14px">✓</span> Ascending melodic run</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)"><span style="color:var(--color-ok);font-size:14px">✓</span> Resolved vs unresolved endings</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)"><span style="color:var(--color-ok);font-size:14px">✓</span> Full song: mukhda + antara + bridge</div>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- COMING SOON cards -->
+    <div class="song-card song-card-coming" style="--card-accent-l:var(--string-d);--card-accent-r:var(--string-a)">
+      <div class="coming-tag">Coming Soon</div>
+      <div class="song-card-num">Song 02</div>
+      <div class="song-card-title">Pehla Nasha</div>
+      <div class="song-card-film">Jo Jeeta Wohi Sikandar · 1992</div>
+      <div class="song-card-meta">
+        <span class="song-pill diff-beginner">Beginner</span>
+        <span class="song-pill">Key: G</span>
+      </div>
+    </div>
+
+    <div class="song-card song-card-coming" style="--card-accent-l:var(--string-g);--card-accent-r:var(--string-d)">
+      <div class="coming-tag">Coming Soon</div>
+      <div class="song-card-num">Song 03</div>
+      <div class="song-card-title">Tum Hi Ho</div>
+      <div class="song-card-film">Aashiqui 2 · 2013</div>
+      <div class="song-card-meta">
+        <span class="song-pill diff-intermediate">Intermediate</span>
+        <span class="song-pill">Key: Am</span>
+      </div>
+    </div>
+
+    <div class="song-card song-card-coming" style="--card-accent-l:var(--string-b);--card-accent-r:var(--string-e-high)">
+      <div class="coming-tag">Coming Soon</div>
+      <div class="song-card-num">Song 04</div>
+      <div class="song-card-title">Kal Ho Naa Ho</div>
+      <div class="song-card-film">Kal Ho Naa Ho · 2003</div>
+      <div class="song-card-meta">
+        <span class="song-pill diff-intermediate">Intermediate</span>
+        <span class="song-pill">Key: D</span>
+      </div>
+    </div>
+
+    <div class="song-card song-card-coming" style="--card-accent-l:var(--string-a);--card-accent-r:var(--string-g)">
+      <div class="coming-tag">Coming Soon</div>
+      <div class="song-card-num">Song 05</div>
+      <div class="song-card-title">Lag Ja Gale</div>
+      <div class="song-card-film">Woh Kaun Thi · 1964</div>
+      <div class="song-card-meta">
+        <span class="song-pill diff-beginner">Beginner</span>
+        <span class="song-pill">Key: Em</span>
+      </div>
+    </div>
+
+    <div class="song-card song-card-coming" style="--card-accent-l:var(--string-e-high);--card-accent-r:var(--string-b)">
+      <div class="coming-tag">Coming Soon</div>
+      <div class="song-card-num">Song 06</div>
+      <div class="song-card-title">Dil Dhadakne Do</div>
+      <div class="song-card-film">Zindagi Na Milegi Dobara · 2011</div>
+      <div class="song-card-meta">
+        <span class="song-pill diff-advanced">Advanced</span>
+        <span class="song-pill">Key: C</span>
+      </div>
+    </div>
+
+  </div><!-- /song-grid -->
+
+  <div style="margin-top:28px;text-align:center">
+    <p style="font-family:var(--font-mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary)">
+      New songs added regularly · Each lesson fully verified before publication
+    </p>
+  </div>
+
+</div>
+</section>
+
+<!-- ── QUOTE ─────────────────────────────────────────────────────── -->
+<section class="site-section" style="padding:72px 24px">
+<div class="site-section-inner" style="text-align:center">
+  <div class="quote-block">
+    <p class="quote-text">"Music gives a soul to the universe, wings to the mind, flight to the imagination, and life to everything."</p>
+    <p class="quote-attr">Plato &nbsp;·&nbsp; Shared by every guitarist who learned their first Bollywood song</p>
+  </div>
+</div>
+</section>
+
+<!-- ── CHORD SECTION PREVIEW ─────────────────────────────────────── -->
+<section class="site-section site-section-alt">
+<div class="site-section-inner">
+  <p class="site-section-eyebrow">Chord Reference</p>
+  <h2 class="site-section-title">The <em>Chords</em> Behind the Songs</h2>
+  <p class="site-section-body">
+    Master these essential chords and you'll have the harmonic vocabulary to play hundreds of Bollywood songs. The chord library includes SVG diagrams, fingering positions, music theory, and the strumming patterns behind the classics.
+  </p>
+
+  <!-- Mini chord preview strip -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px">
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">Am</div>
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">G</div>
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">E</div>
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">E7</div>
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">C</div>
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">D</div>
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">Dm</div>
+    <div style="background:var(--bg-deep);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--gold-bright);min-width:70px;text-align:center">F</div>
+    <div style="background:var(--fill-gold-soft);border:1px solid var(--border-moderate);border-radius:var(--radius-md);padding:12px 20px;font-family:var(--font-mono);font-size:11px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;display:flex;align-items:center">+ 4 more →</div>
+  </div>
+
+  <a href="chords.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px">
+    Open Chord Library <span>→</span>
+  </a>
+</div>
+</section>
+
+<!-- ── LEARNING PATH ──────────────────────────────────────────────── -->
+<section class="site-section" id="learn">
+<div class="site-section-inner">
+  <p class="site-section-eyebrow">Learning Path</p>
+  <h2 class="site-section-title">How to <em>Progress</em></h2>
+  <p class="site-section-body">Follow this sequence and you'll go from zero to playing complete Bollywood songs — with genuine musical understanding, not just muscle memory.</p>
+
+  <div class="path-grid">
+    <div class="path-card">
+      <div class="path-card-icon">🎸</div>
+      <div class="path-card-title">Tune Up</div>
+      <div class="path-card-body">Standard tuning: E A D G B e. Use a clip-on tuner or a free phone app. Every lesson assumes standard tuning — don't skip this step.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-icon">🤚</div>
+      <div class="path-card-title">Open Chords</div>
+      <div class="path-card-body">Learn Am, G, E, E7, C, and D. These six chords cover the majority of Bollywood's 1970s–90s golden era. Visit the Chord Library.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-icon">🎵</div>
+      <div class="path-card-title">First Melody</div>
+      <div class="path-card-body">Start with Chura Liya Hai Tumne. It uses only three strings, four patterns, and teaches string navigation, slides, and phrasing all at once.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-icon">👂</div>
+      <div class="path-card-title">Ear Training</div>
+      <div class="path-card-body">Use the ▶ Play buttons on every section tab. Listen first, then play. Your ear is the most important instrument — train it alongside your fingers.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-icon">📊</div>
+      <div class="path-card-title">Music Theory</div>
+      <div class="path-card-body">Understanding why Am → E7 creates tension makes the music make sense. Read the theory section in the Chord Library after your first song.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-icon">🔁</div>
+      <div class="path-card-title">Repetition</div>
+      <div class="path-card-body">Practice each phrase 20 times before moving on. Speed comes from smoothness, not effort. Slow and clean beats fast and sloppy every time.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-icon">🎤</div>
+      <div class="path-card-title">Sing Along</div>
+      <div class="path-card-body">Hum the lyrics as you play. Your voice locks in the timing better than a metronome. Rafi sahab will guide your fingers if you let him.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-icon">🚀</div>
+      <div class="path-card-title">Barre Chords</div>
+      <div class="path-card-body">Once open chords feel automatic, learn F major barre. It unlocks every key on the neck. Difficult at first — entirely worth the effort.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+  <div class="site-footer">
+    <div>
+      <div class="footer-brand-name">🎸 Bollywood Guitar School</div>
+      <p class="footer-brand-desc">Learn to play the greatest songs from Hindi cinema — with verified tabs, chord diagrams, and Web Audio playback to keep you on pitch.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Learn</div>
+      <ul class="footer-col-links">
+        <li><a href="chords.html">Chord Library</a></li>
+        <li><a href="#learn">Learning Path</a></li>
+        <li><a href="#songs">All Songs</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Songs</div>
+      <ul class="footer-col-links">
+        <li><a href="chura-liya-guitar-tab-v6.html">Chura Liya Hai Tumne</a></li>
+        <li><a href="#" style="opacity:.4;pointer-events:none">Pehla Nasha — Soon</a></li>
+        <li><a href="#" style="opacity:.4;pointer-events:none">Tum Hi Ho — Soon</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-col-links">
+        <li><a href="guitar-tab-theme.css">Download CSS Theme</a></li>
+        <li><a href="chords.html#theory">Music Theory</a></li>
+        <li><a href="chords.html">Strumming Patterns</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-bottom-copy">© 2025 Bollywood Guitar School · guitar-tab-theme.css v1.1</span>
+    <span class="footer-bottom-css">All tabs source-verified · WCAG AA · Web Audio API</span>
+  </div>
+</footer>
+
+</body>
+</html>

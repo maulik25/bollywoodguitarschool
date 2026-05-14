@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guitar Chords — Bollywood Guitar School</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guitar-tab-theme.css">
+<style>
+/* ── Page-specific additions ─── */
+.chord-section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-moderate), transparent);
+  margin: 56px 0 48px;
+}
+.theory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px; margin-top: 8px;
+}
+.theory-card {
+  background: var(--bg-raise);
+  border: 1px solid var(--border-row);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+.theory-card-icon { font-size: 24px; margin-bottom: 10px; }
+.theory-card-title {
+  font-family: var(--font-display); font-size: 18px;
+  font-weight: 600; color: var(--gold-bright); margin-bottom: 8px;
+}
+.theory-card-body { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+.fretboard-note {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 2px 7px; border-radius: 3px;
+  background: var(--fill-gold-soft);
+  color: var(--gold-bright); margin: 2px 1px;
+}
+
+/* chord page hero bar */
+.chord-page-hero {
+  padding: 56px 24px 48px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-section);
+  position: relative; overflow: hidden;
+}
+.chord-page-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 80% at 50% -5%,
+    rgba(200,168,75,0.09) 0%, transparent 65%);
+}
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <a href="index.html" class="site-nav-logo">🎸 Bollywood <span>Guitar School</span></a>
+  <ul class="site-nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="chords.html" class="active">Chords</a></li>
+    <li><a href="index.html#songs">Songs</a></li>
+    <li><a href="index.html#learn">Learn</a></li>
+  </ul>
+  <a href="index.html#songs" class="site-nav-cta">Start Playing</a>
+</nav>
+
+<!-- ── PAGE HERO ────────────────────────────────────────────────── -->
+<div class="chord-page-hero">
+  <div class="gt-version-tag">Reference Guide · Open Chords · Barre Chords · Theory</div>
+  <h1 class="gt-title" style="font-size:clamp(32px,5vw,54px)">Guitar <em>Chords</em></h1>
+  <p class="gt-subtitle">Every chord used in Bollywood guitar — with diagrams, fingering, and music theory</p>
+  <div class="gt-badges" style="margin-top:18px">
+    <div class="gt-badge">Open Chords</div>
+    <div class="gt-badge">Barre Chords</div>
+    <div class="gt-badge">Bollywood Keys</div>
+    <div class="gt-badge">SVG Diagrams</div>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT ─────────────────────────────────────────────── -->
+<div class="site-section">
+<div class="site-section-inner">
+
+  <!-- FILTER BAR -->
+  <div class="chord-filter-bar">
+    <button class="chord-filter-btn active" onclick="filterChords('all')">All Chords</button>
+    <button class="chord-filter-btn" onclick="filterChords('major')">Major</button>
+    <button class="chord-filter-btn" onclick="filterChords('minor')">Minor</button>
+    <button class="chord-filter-btn" onclick="filterChords('seventh')">7th &amp; Dominant</button>
+    <button class="chord-filter-btn" onclick="filterChords('barre')">Barre</button>
+    <button class="chord-filter-btn" onclick="filterChords('bollywood')">Used in Songs</button>
+  </div>
+
+  <!-- CHORD GRID -->
+  <div class="chord-library" id="chord-library">
+
+    <!-- Am — used in Chura Liya -->
+    <div class="chord-card" data-cats="minor bollywood">
+      <div class="chord-name-lbl">Am</div>
+      <div class="chord-alt-name">A Minor</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <!-- nut -->
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <!-- frets -->
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <!-- strings -->
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <!-- open strings: e(72) B(60) -->
+          <circle cx="72" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="60" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <!-- muted: E(8) -->
+          <text x="5" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <!-- dots: fret1: B(60) skipped open, G(47)f2, D(34)f2, A(21)f0-->
+          <circle cx="47" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="34" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="21" cy="38" r="6" fill="#e07830"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · open &nbsp; <span>B</span> · open<br>
+        <span>G</span> · fret 2 · mid<br>
+        <span>D</span> · fret 2 · ring<br>
+        <span>A</span> · fret 0<br>
+        <span>E</span> · muted ×
+      </div>
+      <div class="chord-tag">Chura Liya</div>
+    </div>
+
+    <!-- G Major -->
+    <div class="chord-card" data-cats="major bollywood">
+      <div class="chord-name-lbl">G</div>
+      <div class="chord-alt-name">G Major</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <!-- fret2 open: D(34), G(47), B(60) -->
+          <circle cx="34" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="47" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="60" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <!-- dots -->
+          <circle cx="8"  cy="18" r="6" fill="#c8a84b"/><!-- E f2 -->
+          <circle cx="21" cy="38" r="6" fill="#e07830"/><!-- A f3 -->
+          <circle cx="72" cy="38" r="6" fill="#3db870"/><!-- e f3 -->
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · fret 3 · pinky<br>
+        <span>B</span> · open<br>
+        <span>G</span> · open<br>
+        <span>D</span> · open<br>
+        <span>A</span> · fret 3 · ring<br>
+        <span>E</span> · fret 2 · index
+      </div>
+      <div class="chord-tag">Chura Liya</div>
+    </div>
+
+    <!-- E Major -->
+    <div class="chord-card" data-cats="major bollywood">
+      <div class="chord-name-lbl">E</div>
+      <div class="chord-alt-name">E Major</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <circle cx="8"  cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="72" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="21" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="34" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="47" cy="38" r="6" fill="#e07830"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · open<br>
+        <span>B</span> · fret 2 · mid · ring<br>
+        <span>G</span> · fret 1 · index<br>
+        <span>D</span> · fret 2<br>
+        <span>A</span> · open<br>
+        <span>E</span> · open
+      </div>
+      <div class="chord-tag">Chura Liya</div>
+    </div>
+
+    <!-- E7 -->
+    <div class="chord-card" data-cats="seventh bollywood">
+      <div class="chord-name-lbl">E7</div>
+      <div class="chord-alt-name">E Dominant 7th</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <circle cx="8"  cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="47" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="72" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="21" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="34" cy="18" r="6" fill="#c8a84b"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · open<br>
+        <span>B</span> · open<br>
+        <span>G</span> · fret 1 · mid<br>
+        <span>D</span> · fret 2 · ring<br>
+        <span>A</span> · fret 2 · index<br>
+        <span>E</span> · open
+      </div>
+      <div class="chord-tag">Chura Liya</div>
+    </div>
+
+    <!-- A Major -->
+    <div class="chord-card" data-cats="major">
+      <div class="chord-name-lbl">A</div>
+      <div class="chord-alt-name">A Major</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <text x="5" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <circle cx="21" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="72" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="34" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="47" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="60" cy="18" r="6" fill="#c8a84b"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · open<br>
+        <span>B</span> · fret 2 · pinky<br>
+        <span>G</span> · fret 2 · ring<br>
+        <span>D</span> · fret 2 · mid<br>
+        <span>A</span> · open<br>
+        <span>E</span> · muted ×
+      </div>
+    </div>
+
+    <!-- D Major -->
+    <div class="chord-card" data-cats="major">
+      <div class="chord-name-lbl">D</div>
+      <div class="chord-alt-name">D Major</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <text x="5" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <text x="18" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <circle cx="34" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="60" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="72" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="47" cy="38" r="6" fill="#e07830"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · fret 2 · mid<br>
+        <span>B</span> · fret 3 · ring<br>
+        <span>G</span> · fret 2 · index<br>
+        <span>D</span> · open<br>
+        <span>A</span> · muted ×<br>
+        <span>E</span> · muted ×
+      </div>
+    </div>
+
+    <!-- C Major -->
+    <div class="chord-card" data-cats="major bollywood">
+      <div class="chord-name-lbl">C</div>
+      <div class="chord-alt-name">C Major</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <text x="5" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <circle cx="72" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="34" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="21" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="47" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="60" cy="38" r="6" fill="#e07830"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · open<br>
+        <span>B</span> · fret 1 · index<br>
+        <span>G</span> · open<br>
+        <span>D</span> · fret 2 · mid<br>
+        <span>A</span> · fret 3 · ring<br>
+        <span>E</span> · muted ×
+      </div>
+    </div>
+
+    <!-- F Major (barre) -->
+    <div class="chord-card" data-cats="major barre">
+      <div class="chord-name-lbl">F</div>
+      <div class="chord-alt-name">F Major · Barre</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <!-- barre bar fret 1 -->
+          <rect x="4" y="13" width="72" height="11" rx="5" fill="#4a9de0" opacity=".85"/>
+          <circle cx="47" cy="38" r="6" fill="#c8a84b"/>
+          <circle cx="34" cy="38" r="6" fill="#c8a84b"/>
+          <circle cx="21" cy="58" r="6" fill="#e07830"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · fret 1 · barre<br>
+        <span>B</span> · fret 1 · barre<br>
+        <span>G</span> · fret 2 · ring<br>
+        <span>D</span> · fret 3 · pinky<br>
+        <span>A</span> · fret 3 · ring<br>
+        <span>E</span> · fret 1 · barre
+      </div>
+      <div class="chord-tag">Barre — 1st fret</div>
+    </div>
+
+    <!-- Dm -->
+    <div class="chord-card" data-cats="minor bollywood">
+      <div class="chord-name-lbl">Dm</div>
+      <div class="chord-alt-name">D Minor</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <text x="5" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <text x="18" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <circle cx="34" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="72" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="47" cy="38" r="6" fill="#e07830"/>
+          <circle cx="60" cy="18" r="6" fill="#c8a84b"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · fret 1 · index<br>
+        <span>B</span> · fret 3 · pinky<br>
+        <span>G</span> · fret 2 · ring<br>
+        <span>D</span> · open<br>
+        <span>A</span> · muted ×<br>
+        <span>E</span> · muted ×
+      </div>
+    </div>
+
+    <!-- Em -->
+    <div class="chord-card" data-cats="minor">
+      <div class="chord-name-lbl">Em</div>
+      <div class="chord-alt-name">E Minor</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <circle cx="8"  cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="72" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="34" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="47" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="21" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="60" cy="18" r="6" fill="#c8a84b"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · open<br>
+        <span>B</span> · fret 2 · mid<br>
+        <span>G</span> · open<br>
+        <span>D</span> · open<br>
+        <span>A</span> · fret 2 · ring<br>
+        <span>E</span> · open
+      </div>
+    </div>
+
+    <!-- Bm barre -->
+    <div class="chord-card" data-cats="minor barre">
+      <div class="chord-name-lbl">Bm</div>
+      <div class="chord-alt-name">B Minor · Barre</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <!-- fret marker at 2 -->
+          <text x="74" y="22" font-size="7" fill="#9b9285" font-family="monospace">2</text>
+          <line x1="8" y1="8"  x2="72" y2="8"  stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="8" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="8" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="8" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="8" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="8" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="8" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <text x="5" y="5" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <!-- barre at fret 2 -->
+          <rect x="4" y="13" width="72" height="11" rx="5" fill="#4a9de0" opacity=".85"/>
+          <circle cx="34" cy="38" r="6" fill="#c8a84b"/>
+          <circle cx="47" cy="38" r="6" fill="#c8a84b"/>
+          <circle cx="60" cy="58" r="6" fill="#e07830"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · fret 2 · barre<br>
+        <span>B</span> · fret 2 · barre<br>
+        <span>G</span> · fret 4 · pinky<br>
+        <span>D</span> · fret 4 · ring<br>
+        <span>A</span> · fret 2 · barre<br>
+        <span>E</span> · muted ×
+      </div>
+      <div class="chord-tag">Barre — 2nd fret</div>
+    </div>
+
+    <!-- A7 -->
+    <div class="chord-card" data-cats="seventh bollywood">
+      <div class="chord-name-lbl">A7</div>
+      <div class="chord-alt-name">A Dominant 7th</div>
+      <div class="chord-diagram">
+        <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="64" height="4" rx="1" fill="#c8a84b"/>
+          <line x1="8" y1="28" x2="72" y2="28" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="48" x2="72" y2="48" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8" y1="68" x2="72" y2="68" stroke="#5a544a" stroke-width="1"/>
+          <line x1="8"  y1="12" x2="8"  y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="21" y1="12" x2="21" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="34" y1="12" x2="34" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="47" y1="12" x2="47" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <line x1="72" y1="12" x2="72" y2="80" stroke="#9b9285" stroke-width="1.2"/>
+          <text x="5" y="7" font-size="8" fill="#e05050" font-family="monospace">×</text>
+          <circle cx="21" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="34" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="72" cy="6" r="3" fill="none" stroke="#c8a84b" stroke-width="1.2"/>
+          <circle cx="47" cy="18" r="6" fill="#c8a84b"/>
+          <circle cx="60" cy="18" r="6" fill="#c8a84b"/>
+        </svg>
+      </div>
+      <div class="chord-fingers">
+        <span>e</span> · open<br>
+        <span>B</span> · fret 2 · ring<br>
+        <span>G</span> · fret 2 · mid<br>
+        <span>D</span> · open<br>
+        <span>A</span> · open<br>
+        <span>E</span> · muted ×
+      </div>
+      <div class="chord-tag">Chura Liya</div>
+    </div>
+
+  </div><!-- /chord-library -->
+
+  <!-- CHORD THEORY SECTION -->
+  <div class="chord-section-divider"></div>
+  <div class="site-section-eyebrow">Music Theory</div>
+  <h2 class="site-section-title">Understanding <em>Chords</em></h2>
+  <p class="site-section-body">Before memorising shapes, understanding why chords sound the way they do makes learning far faster. Here are the core concepts every Bollywood guitarist needs.</p>
+
+  <div class="theory-grid">
+    <div class="theory-card">
+      <div class="theory-card-icon">🎵</div>
+      <div class="theory-card-title">Major Chords</div>
+      <div class="theory-card-body">
+        Built from the <strong>root, major 3rd, and perfect 5th</strong> of a scale. They sound bright, resolved, and happy. Formula: <span class="fretboard-note">1</span><span class="fretboard-note">3</span><span class="fretboard-note">5</span>. In Bollywood: G major anchors the joyful verses of Chura Liya.
+      </div>
+    </div>
+    <div class="theory-card">
+      <div class="theory-card-icon">🌙</div>
+      <div class="theory-card-title">Minor Chords</div>
+      <div class="theory-card-body">
+        The 3rd is flattened by one semitone. Formula: <span class="fretboard-note">1</span><span class="fretboard-note">♭3</span><span class="fretboard-note">5</span>. They sound emotional, longing, melancholic — perfect for Bollywood's romantic minor keys. Am is the home chord of Chura Liya.
+      </div>
+    </div>
+    <div class="theory-card">
+      <div class="theory-card-icon">🎸</div>
+      <div class="theory-card-title">Dominant 7th</div>
+      <div class="theory-card-body">
+        A major chord with a flattened 7th added: <span class="fretboard-note">1</span><span class="fretboard-note">3</span><span class="fretboard-note">5</span><span class="fretboard-note">♭7</span>. Creates tension that wants to resolve. E7 in Chura Liya pulls strongly back to Am — that tension is the song's emotional engine.
+      </div>
+    </div>
+    <div class="theory-card">
+      <div class="theory-card-icon">🤚</div>
+      <div class="theory-card-title">Barre Chords</div>
+      <div class="theory-card-body">
+        One finger (usually index) presses all 6 strings across a single fret, acting as a movable nut. The chord shape stays the same — only the fret position changes. F major is the classic beginner barre challenge.
+      </div>
+    </div>
+    <div class="theory-card">
+      <div class="theory-card-icon">🇮🇳</div>
+      <div class="theory-card-title">Bollywood Keys</div>
+      <div class="theory-card-body">
+        Most Bollywood songs are written in <strong>Am, D minor, or G major</strong>. The Am → G → E7 → Am progression appears in dozens of 1970s–80s hits. Mastering these four chords opens up a huge repertoire instantly.
+      </div>
+    </div>
+    <div class="theory-card">
+      <div class="theory-card-icon">🔄</div>
+      <div class="theory-card-title">Chord Progressions</div>
+      <div class="theory-card-body">
+        Chura Liya: <span class="fretboard-note">Am</span><span class="fretboard-note">G</span><span class="fretboard-note">Am</span><span class="fretboard-note">E</span>. Repeats throughout the mukhda. The i–VII–i–V progression is one of the most common in Hindi film music — romantic, cyclical, yearning.
+      </div>
+    </div>
+  </div>
+
+  <!-- STRUMMING PATTERNS -->
+  <div class="chord-section-divider"></div>
+  <div class="site-section-eyebrow">Rhythm</div>
+  <h2 class="site-section-title">Strumming <em>Patterns</em></h2>
+  <p class="site-section-body">The right strumming pattern transforms a chord sequence into a song. These are the patterns used in the songs on this site.</p>
+
+  <div class="theory-grid">
+    <div class="theory-card">
+      <div class="theory-card-icon">⬇️⬆️</div>
+      <div class="theory-card-title">DUUDUD</div>
+      <div class="theory-card-body">
+        Down · Up · Up · Down · Up · Down. The classic Bollywood strumming pattern — used in Chura Liya and hundreds of other 70s–80s songs. Start at 60 BPM and build up to 110 BPM.
+      </div>
+    </div>
+    <div class="theory-card">
+      <div class="theory-card-icon">⬇️⬇️</div>
+      <div class="theory-card-title">DDUD</div>
+      <div class="theory-card-body">
+        Down · Down · Up · Down. A simpler 4-beat pattern for beginners. Gives a stronger rhythmic pulse and is easier to keep steady while switching chords.
+      </div>
+    </div>
+    <div class="theory-card">
+      <div class="theory-card-icon">🤌</div>
+      <div class="theory-card-title">Fingerpick Arpeggio</div>
+      <div class="theory-card-body">
+        Thumb plays bass string · Index plays G · Middle plays B · Ring plays e. Used for slow, intimate Bollywood ballads. The tab lessons on this site use this approach for melody playing.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /site-section-inner -->
+</div><!-- /site-section -->
+
+<!-- ── FOOTER ────────────────────────────────────────────────────── -->
+<footer>
+  <div class="site-footer">
+    <div>
+      <div class="footer-brand-name">🎸 Bollywood Guitar School</div>
+      <p class="footer-brand-desc">Learn to play the greatest songs from Hindi cinema — with verified tabs, chord diagrams, and Web Audio playback to keep you on pitch.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Learn</div>
+      <ul class="footer-col-links">
+        <li><a href="chords.html">Chord Library</a></li>
+        <li><a href="index.html#learn">Learning Path</a></li>
+        <li><a href="index.html#songs">All Songs</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Songs</div>
+      <ul class="footer-col-links">
+        <li><a href="chura-liya-guitar-tab-v6.html">Chura Liya Hai Tumne</a></li>
+        <li><a href="#" style="opacity:.4;pointer-events:none">Coming Soon…</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-col-links">
+        <li><a href="guitar-tab-theme.css">Download CSS Theme</a></li>
+        <li><a href="chords.html#theory">Music Theory</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-bottom-copy">© 2025 Bollywood Guitar School · guitar-tab-theme.css v1.1</span>
+    <span class="footer-bottom-css">Tabs verified · WCAG AA · Web Audio</span>
+  </div>
+</footer>
+
+<script>
+function filterChords(cat) {
+  document.querySelectorAll('.chord-filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.chord-card').forEach(card => {
+    const cats = (card.dataset.cats || '').split(' ');
+    card.classList.toggle('hidden', cat !== 'all' && !cats.includes(cat));
+  });
+}
+</script>
+</body>
+</html>
